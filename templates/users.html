@@ -34,7 +34,7 @@
                     </thead>
                     <tbody>
                     {% for user in users %}
-                        {% if user.email != 'gowthaman.nkl1@gmail.com' %}
+                        
                             <tr>
                                 <td>{{ user.id }}</td>
                                 <td>{{ user.first_name }}</td>
@@ -44,7 +44,7 @@
                                 <td>{{ user.date_joined  |date:"d-m-Y H:i:s" }}</td>
                                 <td><a class="btn btn-sm btn-danger" href="delete/{{ user.id }}"><span class="fa fa-trash"></span> Delete</a></td>
                             </tr>
-                        {% endif %}
+                      
                     {% endfor %}
                     </tbody>
                 </table>
