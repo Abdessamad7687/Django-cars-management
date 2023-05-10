@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2023 at 11:04 PM
+-- Generation Time: May 10, 2023 at 01:56 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -90,22 +90,10 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (26, 'Can change member', 7, 'change_member'),
 (27, 'Can delete member', 7, 'delete_member'),
 (28, 'Can view member', 7, 'view_member'),
-(29, 'Can add document', 8, 'add_document'),
-(30, 'Can change document', 8, 'change_document'),
-(31, 'Can delete document', 8, 'delete_document'),
-(32, 'Can view document', 8, 'view_document'),
-(33, 'Can add ajax', 9, 'add_ajax'),
-(34, 'Can change ajax', 9, 'change_ajax'),
-(35, 'Can delete ajax', 9, 'delete_ajax'),
-(36, 'Can view ajax', 9, 'view_ajax'),
-(37, 'Can add csv upload', 10, 'add_csvupload'),
-(38, 'Can change csv upload', 10, 'change_csvupload'),
-(39, 'Can delete csv upload', 10, 'delete_csvupload'),
-(40, 'Can view csv upload', 10, 'view_csvupload'),
-(41, 'Can add car', 11, 'add_car'),
-(42, 'Can change car', 11, 'change_car'),
-(43, 'Can delete car', 11, 'delete_car'),
-(44, 'Can view car', 11, 'view_car');
+(29, 'Can add car', 8, 'add_car'),
+(30, 'Can change car', 8, 'change_car'),
+(31, 'Can delete car', 8, 'delete_car'),
+(32, 'Can view car', 8, 'view_car');
 
 -- --------------------------------------------------------
 
@@ -154,57 +142,16 @@ CREATE TABLE `auth_user_user_permissions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `crud_ajax`
---
-
-CREATE TABLE `crud_ajax` (
-  `id` bigint(20) NOT NULL,
-  `text` varchar(255) NOT NULL,
-  `search` varchar(255) NOT NULL,
-  `email` varchar(254) NOT NULL,
-  `telephone` varchar(10) NOT NULL,
-  `created_at` datetime(6) NOT NULL,
-  `updated_at` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `crud_car`
 --
 
 CREATE TABLE `crud_car` (
   `id` bigint(20) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `document` varchar(255) NOT NULL,
-  `uploaded_at` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `crud_csvupload`
---
-
-CREATE TABLE `crud_csvupload` (
-  `id` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `end_date` datetime(6) NOT NULL,
-  `notes` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `crud_document`
---
-
-CREATE TABLE `crud_document` (
-  `id` bigint(20) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `document` varchar(255) NOT NULL,
-  `uploaded_at` datetime(6) NOT NULL
+  `name` varchar(40) NOT NULL,
+  `price` varchar(40) NOT NULL,
+  `typeofcar` varchar(10) NOT NULL,
+  `speed` longtext NOT NULL,
+  `startdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -224,6 +171,13 @@ CREATE TABLE `crud_member` (
   `created_at` datetime(6) NOT NULL,
   `updated_at` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `crud_member`
+--
+
+INSERT INTO `crud_member` (`id`, `firstname`, `lastname`, `mobile_number`, `description`, `location`, `date`, `created_at`, `updated_at`) VALUES
+(1, 'Ahmali', 'Abdessamad', '0697870947', 'For 5 days', 'Marrackech', '2018-08-19', '2023-05-10 07:21:30.056950', '2023-05-10 07:21:30.056950');
 
 -- --------------------------------------------------------
 
@@ -264,10 +218,7 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (2, 'auth', 'permission'),
 (4, 'auth', 'user'),
 (5, 'contenttypes', 'contenttype'),
-(9, 'crud', 'ajax'),
-(11, 'crud', 'car'),
-(10, 'crud', 'csvupload'),
-(8, 'crud', 'document'),
+(8, 'crud', 'car'),
 (7, 'crud', 'member'),
 (6, 'sessions', 'session');
 
@@ -289,27 +240,30 @@ CREATE TABLE `django_migrations` (
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'contenttypes', '0001_initial', '2023-05-09 19:49:18.074224'),
-(2, 'auth', '0001_initial', '2023-05-09 19:49:18.359420'),
-(3, 'admin', '0001_initial', '2023-05-09 19:49:18.438452'),
-(4, 'admin', '0002_logentry_remove_auto_add', '2023-05-09 19:49:18.438452'),
-(5, 'admin', '0003_logentry_add_action_flag_choices', '2023-05-09 19:49:18.454368'),
-(6, 'contenttypes', '0002_remove_content_type_name', '2023-05-09 19:49:18.502112'),
-(7, 'auth', '0002_alter_permission_name_max_length', '2023-05-09 19:49:18.533614'),
-(8, 'auth', '0003_alter_user_email_max_length', '2023-05-09 19:49:18.549495'),
-(9, 'auth', '0004_alter_user_username_opts', '2023-05-09 19:49:18.565601'),
-(10, 'auth', '0005_alter_user_last_login_null', '2023-05-09 19:49:18.605283'),
-(11, 'auth', '0006_require_contenttypes_0002', '2023-05-09 19:49:18.605283'),
-(12, 'auth', '0007_alter_validators_add_error_messages', '2023-05-09 19:49:18.612790'),
-(13, 'auth', '0008_alter_user_username_max_length', '2023-05-09 19:49:18.628422'),
-(14, 'auth', '0009_alter_user_last_name_max_length', '2023-05-09 19:49:18.644282'),
-(15, 'auth', '0010_alter_group_name_max_length', '2023-05-09 19:49:18.660055'),
-(16, 'auth', '0011_update_proxy_permissions', '2023-05-09 19:49:18.677099'),
-(17, 'auth', '0012_alter_user_first_name_max_length', '2023-05-09 19:49:18.691765'),
-(18, 'sessions', '0001_initial', '2023-05-09 19:49:18.723599'),
-(19, 'crud', '0001_initial', '2023-05-09 20:51:00.034018'),
-(20, 'crud', '0002_crud_member', '2023-05-09 20:51:00.050571'),
-(21, 'crud', '0003_delete_crud_member', '2023-05-09 20:51:00.058128');
+(1, 'contenttypes', '0001_initial', '2023-05-10 11:41:23.195370'),
+(2, 'auth', '0001_initial', '2023-05-10 11:41:23.860318'),
+(3, 'admin', '0001_initial', '2023-05-10 11:41:23.945010'),
+(4, 'admin', '0002_logentry_remove_auto_add', '2023-05-10 11:41:23.958111'),
+(5, 'admin', '0003_logentry_add_action_flag_choices', '2023-05-10 11:41:23.966081'),
+(6, 'contenttypes', '0002_remove_content_type_name', '2023-05-10 11:41:24.078569'),
+(7, 'auth', '0002_alter_permission_name_max_length', '2023-05-10 11:41:24.120744'),
+(8, 'auth', '0003_alter_user_email_max_length', '2023-05-10 11:41:24.134178'),
+(9, 'auth', '0004_alter_user_username_opts', '2023-05-10 11:41:24.140834'),
+(10, 'auth', '0005_alter_user_last_login_null', '2023-05-10 11:41:24.171720'),
+(11, 'auth', '0006_require_contenttypes_0002', '2023-05-10 11:41:24.174768'),
+(12, 'auth', '0007_alter_validators_add_error_messages', '2023-05-10 11:41:24.184471'),
+(13, 'auth', '0008_alter_user_username_max_length', '2023-05-10 11:41:24.206310'),
+(14, 'auth', '0009_alter_user_last_name_max_length', '2023-05-10 11:41:24.227692'),
+(15, 'auth', '0010_alter_group_name_max_length', '2023-05-10 11:41:24.248940'),
+(16, 'auth', '0011_update_proxy_permissions', '2023-05-10 11:41:24.260824'),
+(17, 'auth', '0012_alter_user_first_name_max_length', '2023-05-10 11:41:24.292979'),
+(18, 'crud', '0001_initial', '2023-05-10 11:41:24.352301'),
+(19, 'crud', '0002_crud_member', '2023-05-10 11:41:24.363479'),
+(20, 'crud', '0003_delete_crud_member', '2023-05-10 11:41:24.371833'),
+(21, 'crud', '0004_cartbl_delete_car', '2023-05-10 11:41:24.388465'),
+(22, 'crud', '0005_delete_ajax_delete_csvupload_delete_document', '2023-05-10 11:41:24.401119'),
+(23, 'crud', '0006_rename_cartbl_car', '2023-05-10 11:41:24.418490'),
+(24, 'sessions', '0001_initial', '2023-05-10 11:41:24.449224');
 
 -- --------------------------------------------------------
 
@@ -373,27 +327,9 @@ ALTER TABLE `auth_user_user_permissions`
   ADD KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`);
 
 --
--- Indexes for table `crud_ajax`
---
-ALTER TABLE `crud_ajax`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `crud_car`
 --
 ALTER TABLE `crud_car`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `crud_csvupload`
---
-ALTER TABLE `crud_csvupload`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `crud_document`
---
-ALTER TABLE `crud_document`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -450,13 +386,13 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
@@ -471,34 +407,16 @@ ALTER TABLE `auth_user_user_permissions`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `crud_ajax`
---
-ALTER TABLE `crud_ajax`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `crud_car`
 --
 ALTER TABLE `crud_car`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `crud_csvupload`
---
-ALTER TABLE `crud_csvupload`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `crud_document`
---
-ALTER TABLE `crud_document`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `crud_member`
 --
 ALTER TABLE `crud_member`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`
@@ -510,13 +428,13 @@ ALTER TABLE `django_admin_log`
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables
